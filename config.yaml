@@ -1,0 +1,69 @@
+# config.yaml - AI Video Editor Configuration
+
+# Video Processing Settings
+video:
+  input_directory: "data/sample_videos"
+  output_directory: "data/output"
+  supported_formats: [".mp4", ".avi", ".mov", ".mkv", ".wmv"]
+
+# Scene Detection Settings
+scene_detection:
+  # Threshold for scene change detection (lower = more sensitive)
+  # Typical range: 15.0 - 40.0
+  threshold: 25.0
+  
+  # Minimum scene length in seconds
+  min_scene_length: 2.0
+  
+  # Maximum scene length in seconds (0 = no limit)
+  max_scene_length: 0
+  
+  # Frame sampling rate (process every Nth frame for speed)
+  frame_sampling: 1
+
+# Output Settings
+output:
+  # Video codec for output clips
+  video_codec: "libx264"
+  
+  # Audio codec for output clips
+  audio_codec: "aac"
+  
+  # Video quality (higher = better quality, larger file)
+  # Options: "high", "medium", "low"
+  quality: "medium"
+  
+  # Include scene information JSON file
+  save_scene_info: true
+  
+  # Filename pattern for scene clips
+  # Variables: {video_name}, {scene_num}, {start_time}, {end_time}
+  filename_pattern: "{video_name}_scene_{scene_num:03d}_{start_time:.1f}s-{end_time:.1f}s.mp4"
+
+# Performance Settings
+performance:
+  # Use multithreading for video processing
+  use_multithreading: true
+  
+  # Number of threads (0 = auto-detect)
+  num_threads: 0
+  
+  # Show verbose output
+  verbose: true
+  
+  # Show progress updates
+  show_progress: true
+
+# Advanced Settings
+advanced:
+  # Additional scene detection methods
+  use_histogram_comparison: true
+  use_edge_detection: false
+  use_optical_flow: false
+  
+  # Post-processing filters
+  remove_short_scenes: true
+  merge_similar_scenes: false
+  
+  # Debug mode (saves intermediate frames)
+  debug_mode: false
